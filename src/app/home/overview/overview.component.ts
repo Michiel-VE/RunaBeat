@@ -41,6 +41,7 @@ export class OverviewComponent implements OnInit {
   }
 
   async getActivity(userId: String) {
+
     const snapshot = await firebase.firestore().collection(`activities`).doc(String(userId)).get();
   }
 }
