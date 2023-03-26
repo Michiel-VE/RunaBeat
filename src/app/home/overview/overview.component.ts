@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
-import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AuthServiceService} from "../../services/auth-service.service";
 import firebase from "firebase/compat/app";
 
@@ -22,10 +22,7 @@ export class OverviewComponent implements OnInit {
   }
 
   async addUser(user: User) {
-    console.log('before', this.friendsList)
     const snapshot = await firebase.firestore().collection(`friends`).doc(String(this.authService.user.uid)).get();
-    console.log('before snapshot', snapshot.data())
-
 
     if (snapshot.data()) {
       // @ts-ignore
@@ -43,4 +40,7 @@ export class OverviewComponent implements OnInit {
     await this.afs.doc(`friends/${this.authService.user.uid}`).set({arr})
   }
 
+  async getActivity(userId: String) {
+    const snapshot = await firebase.firestore().collection(`activities`).doc(String(userId)).get();
+  }
 }
