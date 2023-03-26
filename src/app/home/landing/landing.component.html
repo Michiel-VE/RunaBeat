@@ -1,0 +1,27 @@
+<div>
+  <div [ngClass]="friends.length > 0 ?'grid grid-cols-5': ''">
+    <div class="col-span-4">
+      <h1 class="mt-2 text-3xl text-center">Friends</h1>
+    </div>
+
+    <div *ngIf="friends.length > 0" class="mt-2 text-center">
+      <fa-icon class="text-2xl" [icon]="faAdd" (click)="addFriends()"></fa-icon>
+    </div>
+  </div>
+
+  <div *ngIf="friends.length > 0 else noFriends">
+    <div *ngFor="let friend of friends">
+      <app-overview [user]="friend" [addFriends]="false"></app-overview>
+    </div>
+  </div>
+  <ng-template #noFriends>
+    <div class="mx-2 mt-16 text-center" (click)="addFriends()">
+      <p class="text-sm">Why not add friends?</p>
+      <div class="bg-orange inline-block p-4 rounded-3xl mt-4 text-white">
+        <p class="inline-block">Add Friends</p>
+        <fa-icon class="text-2xl ml-6" [icon]="faAdd"></fa-icon>
+      </div>
+    </div>
+
+  </ng-template>
+</div>

@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <img class="rounded-full m-auto mt-4" src="{{user.photoURL}}" alt="">
+  </div>
+  <div>
+    <p class="text-center mt-2">{{user.displayName}}</p>
+  </div>
+  <div>
+    <p class="text-center mt-2">{{user.email}}</p>
+  </div>
+  <div>
+    <div class="text-center mt-2">
+      <div *ngIf="user.birthday else Nobirthday">
+        {{user.birthday}}
+      </div>
+
+    </div>
+    <ng-template #Nobirthday class="text-center mt-2">
+      <form [formGroup]="dateForm">
+      <label for="{{birthdayFormGroupName}}" aria-label="Birthday"></label>
+        <input type="date" name="{{birthdayFormGroupName}}" id="{{birthdayFormGroupName}}">
+        <small class="text-[10px] text-red-700">Warning date cannot be changed</small>
+        <span class="text-muted" *ngIf="!dateForm.controls[birthdayFormGroupName].valid &&
+                 dateForm.controls[birthdayFormGroupName]?.touched"> Please enter a valid birthday</span>
+      </form>
+    </ng-template>
+  </div>
+</div>

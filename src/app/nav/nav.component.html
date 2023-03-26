@@ -1,0 +1,21 @@
+<div *ngIf="!authService.user; else login"></div>
+
+<ng-template #login>
+  <div class="fixed bottom-0 w-[576px] bg-white">
+    <div class="grid grid-cols-3 text-center py-2 text-2xl">
+      <div>
+        <a routerLink="/overview">
+          <fa-icon [icon]="faHouse"></fa-icon>
+        </a>
+      </div>
+      <div>
+        <p>RUN</p>
+      </div>
+      <div>
+        <a routerLink="/profile">
+          <fa-icon [icon]="faUser"></fa-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-template>

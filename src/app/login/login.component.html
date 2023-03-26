@@ -1,0 +1,19 @@
+<div *ngIf="authService.user; else login"></div>
+
+<ng-template #login>
+  <div class="text-center mt-60">
+    <button class="button" (click)="authService.googleSignIn()">
+      <div class="">
+        <fa-icon class="p-4 mr-3 border border-4 rounded-2xl border-orange bg-orange text-white" [icon]="faGoogle">
+        </fa-icon>
+        <p class="inline-block p-4">
+          Login with Google
+        </p>
+      </div>
+    </button>
+  </div>
+
+<div>
+  <img class="m-auto mt-12" src="../../assets/logo.jpg" alt="RunaBeat logo" width="310" height="303">
+</div>
+</ng-template>
