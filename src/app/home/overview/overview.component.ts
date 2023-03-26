@@ -30,22 +30,15 @@ export class OverviewComponent implements OnInit {
     if (snapshot.data()) {
       // @ts-ignore
       const list = Object.values(snapshot.data())
-      console.log(list)
-      list.map((addedFriends: User[], i) => {
-        addedFriends.map((addedFriend: User) => {
-          console.log('friend', addedFriend)
-          this.friendsList.push(addedFriend)
-        })
-      })
-      // @ts-ignore
-      this.friendsList.push(user)
+
+      list[0].push(user)
+      this.friendsList = list[0]
 
     } else {
       this.friendsList.push(user)
     }
 
     const arr = this.friendsList
-    console.log('after arr', arr)
 
     await this.afs.doc(`friends/${this.authService.user.uid}`).set({arr})
   }
