@@ -9,10 +9,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {NavComponent} from './nav/nav.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {FIREBASE_OPTIONS} from '@angular/fire/compat';
-import {environment, firebaseConfig} from "../environments/environment";
+import {firebaseConfig} from "../environments/environment";
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { AddFriendComponent } from './home/add-friend/add-friend.component';
+import { QuestionComponent } from './run/question/question.component';
+import { StartComponent } from './run/start/start.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AddFriendComponent } from './home/add-friend/add-friend.component';
     OverviewComponent,
     NavComponent,
     UserProfileComponent,
-    AddFriendComponent
+    AddFriendComponent,
+    QuestionComponent,
+    StartComponent,
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,35 @@
+<div *ngIf="!pickedEmotion">
+  <div *ngFor="let emotion of emotionArr; index as indexOfElement;">
+    <div class="m-4 p-8 text-center rounded-3xl"
+         [ngClass]="indexOfElement === 0 ? 'bg-green-100': 'bg-green-'+indexOfElement*200">
+      <div class="grid grid-cols-2" [ngClass]="indexOfElement>2.5?'text-white':''" (click)="pickEmotion(emotion)">
+        <p>{{emotion}}</p>
+        <fa-icon [icon]="faArrow"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pickedEmotion && !pickedBeat">
+  <div *ngFor="let beat of beatArr; index as indexOfElement;">
+    <div class="m-4 p-8 text-center rounded-3xl"
+         [ngClass]="indexOfElement === 0 ? 'bg-green-100': 'bg-green-'+indexOfElement*200">
+      <div class="grid grid-cols-2" [ngClass]="indexOfElement>2.5?'text-white':''" (click)="pickBeat(beat)">
+        <p>{{beat}}</p>
+        <fa-icon [icon]="faArrow"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pickedEmotion && pickedBeat">
+  <div *ngFor="let genre of genreArr; index as indexOfElement;">
+    <div (click)="startRun(pickedEmotion, pickedBeat, pickedGenre)" class="m-4 p-8 text-center rounded-3xl"
+         [ngClass]="indexOfElement === 0 ? 'bg-green-100': 'bg-green-'+indexOfElement*200">
+      <div class="grid grid-cols-2" [ngClass]="indexOfElement>2.5?'text-white':''" (click)="pickGenre(genre)">
+        <p>{{genre}}</p>
+        <fa-icon [icon]="faArrow"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<p (click)="startTracking()">Start Run</p>
+<p *ngIf="totalRunTime">Seconds: {{totalRunTime.getSeconds()}}</p>
+<p *ngIf="distanceTraveled >-1">meters: {{distanceTraveled}}</p>
+<p (click)="stopTracking()">Stop Run</p>
+
+<div *ngIf="error">
+  <p>{{error}}</p>
+</div>
+
