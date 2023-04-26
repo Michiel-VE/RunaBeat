@@ -6,6 +6,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/firestore";
 import {GoogleAuthProvider} from "firebase/auth";
 import {User} from "../interfaces/user";
+import {GoogleAuth} from "@codetrix-studio/capacitor-google-auth";
 
 @Injectable({
   providedIn: 'root'
