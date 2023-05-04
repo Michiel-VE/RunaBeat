@@ -1,4 +1,4 @@
-<div *ngIf="!addFriends; else userTemp" class="bg-orange m-2 rounded-xl mb-6 p-2">
+<div *ngIf="!addFriends; else userTemp" class="bg-orange m-2 rounded-xl mb-16 p-2">
   <div class="grid grid-cols-2 mx-2 ">
     <img src="{{user.photoURL}}" alt="{{user.displayName}}">
     <div class="grid grid-rows-2">
@@ -33,9 +33,9 @@
 
 <ng-template #userTemp>
   <div class="my-2">
-    <div class="grid grid-cols-2 mx-2 ">
+    <div class="grid grid-cols-1 mx-2 ">
       <img class="m-auto rounded-full" [src]="user.photoURL" alt="{{user.displayName}}">
-      <div class="grid grid-rows-2">
+      <div class="grid grid-rows-2 text-center">
         <h2 class="font-bold">{{user.displayName}}</h2>
         <p class="text-xs">{{user.email}}</p>
         <button (click)="addUser(user)" class="bg-orange text-white rounded-2xl text-sm m-2">Add me</button>

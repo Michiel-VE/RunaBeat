@@ -12,3 +12,16 @@
     font-family: AKIRA, system-ui, sans-serif;
   }
 }
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+}
+
+.bg-green-200 {
+  background-color: rgb(187 247 208);
+}
+
+.bg-green-400{
+  background-color: rgb(74 222 128);
+}

@@ -1,28 +1,52 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthServiceService} from "../../services/auth-service.service";
+import {User} from "../../interfaces/user";
+import {Router} from "@angular/router";
+import {Subscriber} from "rxjs";
+import {Quote} from "../../interfaces/quote";
 
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.css']
 })
-export class StartComponent implements OnInit {
+export class StartComponent implements OnInit, OnDestroy {
+  public user!: User
   watchId: number;
-  startTime: Date;
-  stopTime: Date;
+  timingId: any;
+  startTime: number;
+  timePassed: string;
   totalRunTime: Date;
   distanceTraveled: number;
   previousPosition: any;
   error: string
 
-  constructor() {
+  constructor(public authService: AuthServiceService, private router:Router) {
+  }
+
+  ngOnDestroy(): void {
+    navigator.geolocation.clearWatch(this.watchId);
+    clearInterval(this.timingId)
   }
 
   ngOnInit(): void {
+    const userValue = localStorage.getItem('user') || ''
+    this.user = JSON.parse(userValue)
+    this.authService.user = this.user
   }
 
   startTracking() {
-    this.startTime = new Date();
+    this.startTime = Date.now();
     this.distanceTraveled = 0;
+
+    this.timingId = setInterval(() => {
+      const timeDifference = Date.now() - this.startTime;
+      const secondsPassed = Math.floor(timeDifference / 1000);
+      const minutesPassed = Math.floor(secondsPassed / 60);
+      const hoursPassed = Math.floor(minutesPassed / 60);
+
+      this.timePassed = `${hoursPassed}h ${minutesPassed % 60}m ${secondsPassed % 60}s`;
+    }, 1000);
 
     this.watchId = navigator.geolocation.watchPosition(
       position => {
@@ -49,13 +73,16 @@ export class StartComponent implements OnInit {
 
   stopTracking() {
     navigator.geolocation.clearWatch(this.watchId);
-    this.stopTime = new Date();
-    this.totalRunTime = new Date(this.stopTime.getTime() - this.startTime.getTime());
+    clearInterval(this.timingId)
 
-    console.log('time', this.totalRunTime.getSeconds())
+    console.log('time', this.timePassed)
     console.log('distance', this.distanceTraveled)
     this.watchId = 0;
     this.previousPosition = null;
+
+    setInterval(()=> {
+      this.router.navigateByUrl('/overview')
+    },5000)
   }
 
   private calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {

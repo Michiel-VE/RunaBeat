@@ -1,9 +1,32 @@
-<p (click)="startTracking()">Start Run</p>
-<p *ngIf="totalRunTime">Seconds: {{totalRunTime.getSeconds()}}</p>
-<p *ngIf="distanceTraveled >-1">meters: {{distanceTraveled}}</p>
-<p (click)="stopTracking()">Stop Run</p>
+<!--<p (click)="startTracking()">Start Run</p>-->
+<!--<p *ngIf="totalRunTime">Seconds: {{totalRunTime.getSeconds()}}</p>-->
+<!--<p *ngIf="startTime">{{timePassed }}</p>-->
+<!--<p *ngIf="distanceTraveled >-1">meters: {{distanceTraveled}}</p>-->
+<!--<p (click)="stopTracking()">Stop Run</p>-->
+
+<!--<div *ngIf="error">-->
+<!--  <p>{{error}}</p>-->
+<!--</div>-->
+
+<div *ngIf="startTime" class="mt-8 mx-4 grid gap-y-20 text-center">
+  <div>
+    <p>Time Ran:</p>
+    <p>{{timePassed }}</p>
+  </div>
+
+  <div>
+    <p>Km Ran:</p>
+    <p *ngIf="distanceTraveled >-1">{{distanceTraveled }} meters</p>
+  </div>
+</div>
 
 <div *ngIf="error">
   <p>{{error}}</p>
 </div>
 
+<div class="absolute bottom-20 w-full">
+  <div class="grid grid-cols-2 gap-3 mx-4">
+    <button class="bg-orange p-2 rounded-full" (click)="startTracking()">Start</button>
+    <button class="bg-orange p-2 rounded-full" (click)="stopTracking()">Stop</button>
+  </div>
+</div>
