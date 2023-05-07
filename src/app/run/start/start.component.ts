@@ -2,10 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthServiceService} from "../../services/auth-service.service";
 import {User} from "../../interfaces/user";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {map, Observable, Subscriber} from "rxjs";
-import {Quote} from "../../interfaces/quote";
+import {map} from "rxjs";
 import {MusicParams} from "../../interfaces/musicParams";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {faSpotify} from "@fortawesome/free-brands-svg-icons/";
+
 
 @Component({
   selector: 'app-start',
@@ -13,6 +14,7 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit, OnDestroy {
+  faSpotify = faSpotify
   public user!: User
   watchId: number;
   timingId: any;
