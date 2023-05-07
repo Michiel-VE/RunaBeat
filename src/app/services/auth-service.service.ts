@@ -17,6 +17,7 @@ export class AuthServiceService {
   loggedIn = false;
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
+    GoogleAuth.initialize()
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -30,16 +31,18 @@ export class AuthServiceService {
 
   async googleSignIn() {
     const provider = new GoogleAuthProvider();
-    const credential = await this.afAuth.signInWithPopup(provider);
+    // const credential = await this.afAuth.signInWithPopup(provider);
+     let user = await GoogleAuth.signIn();
 
-    this.user = this.makeUserObj(credential.user)
+    console.log(user)
+    this.user = this.makeUserObj(user)
 
 
     return this.updateUserData(this.user);
   }
 
   async signOut() {
-    await this.afAuth.signOut();
+    await GoogleAuth.signOut()
     return this.router.navigate(['/']);
   }
 

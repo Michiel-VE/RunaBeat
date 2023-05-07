@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthServiceService} from "../../services/auth-service.service";
 import {User} from "../../interfaces/user";
-import {Router} from "@angular/router";
-import {Subscriber} from "rxjs";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {map, Observable, Subscriber} from "rxjs";
 import {Quote} from "../../interfaces/quote";
+import {MusicParams} from "../../interfaces/musicParams";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-start',
@@ -20,8 +22,10 @@ export class StartComponent implements OnInit, OnDestroy {
   distanceTraveled: number;
   previousPosition: any;
   error: string
+  playListUrl: SafeResourceUrl
+  params: MusicParams
 
-  constructor(public authService: AuthServiceService, private router:Router) {
+  constructor(public authService: AuthServiceService, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
   }
 
   ngOnDestroy(): void {
@@ -33,6 +37,21 @@ export class StartComponent implements OnInit, OnDestroy {
     const userValue = localStorage.getItem('user') || ''
     this.user = JSON.parse(userValue)
     this.authService.user = this.user
+
+    this.route.queryParams.pipe(
+      map((params: Params) => {
+        const musicParams: MusicParams = {
+          emotion: params['emotion'],
+          beat: params['beat'],
+          genre: params['genre'],
+        };
+        return musicParams;
+      })
+    ).subscribe((params: MusicParams) => {
+      this.params = params
+      this.chosePlaylist(params)
+    })
+
   }
 
   startTracking() {
@@ -80,9 +99,9 @@ export class StartComponent implements OnInit, OnDestroy {
     this.watchId = 0;
     this.previousPosition = null;
 
-    setInterval(()=> {
+    setInterval(() => {
       this.router.navigateByUrl('/overview')
-    },5000)
+    }, 5000)
   }
 
   private calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
@@ -102,5 +121,55 @@ export class StartComponent implements OnInit, OnDestroy {
 
   private toRadians(degrees: number) {
     return degrees * Math.PI / 180;
+  }
+
+  private chosePlaylist(params: MusicParams) {
+    switch (params.emotion.toLowerCase()) {
+      case "motivated":
+        switch (params.beat.toLowerCase()) {
+          case "easy":
+            this.playListUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://open.spotify.com/playlist/3OvIV4loPsLKwWIcmsQVaj?si=4c06dea0a3be43be")
+            break
+          case "medium":
+            this.playListUrl = "https://open.spotify.com/playlist/3vITjiFgGpV98vLoawO7rk?si=f60f4870429747c9"
+            break
+          case "hard":
+            this.playListUrl = "https://open.spotify.com/playlist/0Ejv8hGuHMYU4MS5MaGncJ?si=cdb63f7fca1a4140v"
+            break
+        }
+        break
+
+      case "physically exhausted":
+        switch (params.beat.toLowerCase()) {
+          case "easy":
+            this.playListUrl = "https://open.spotify.com/playlist/7GbWqnAZI3cnu85bx96dxr?si=7448e6857f4446d2"
+            break
+          case "medium":
+            this.playListUrl = "https://open.spotify.com/playlist/0S0FHLZ7Y0kNPKmSW35pZD?si=10b43ea86d054278"
+            break
+          case "hard":
+            this.playListUrl = "https://open.spotify.com/playlist/4OCqt3LgvWDUQE6BtntMjm?si=c67d3464ce784e1d"
+            break
+        }
+        break
+
+      case "mentally exhausted":
+        switch (params.beat.toLowerCase()) {
+          case "easy":
+            this.playListUrl = "https://open.spotify.com/playlist/4lKA3ZjSGIwwh5GdfdVCFD?si=0c547d979fb644cc"
+            break
+          case "medium":
+            this.playListUrl = "https://open.spotify.com/playlist/4tFRKS1us3gtqnzoe8GfBD?si=63b88879f92441ff"
+            break
+          case "hard":
+            this.playListUrl = "https://open.spotify.com/playlist/6HfPnrriIYkJnEkVu73wR9?si=9a0376f07c674765"
+            break
+
+        }
+        break
+
+      default:
+        this.playListUrl = "https://open.spotify.com/playlist/6FuVaXJvnRAQRR0aakV8PH?si=e6d2e9bb04f84aff"
+    }
   }
 }

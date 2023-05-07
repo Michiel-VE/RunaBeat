@@ -32,7 +32,8 @@ export class QuestionComponent implements OnInit {
     this.pickedEmotion = emotion
   }
 
-  pickBeat(beat: string) {0
+  pickBeat(beat: string) {
+    0
     this.pickedBeat = beat
   }
 
@@ -44,6 +45,10 @@ export class QuestionComponent implements OnInit {
   }
 
   startRun(emotion: string, beat: string, genre: string) {
-    this.router.navigateByUrl('/start')
+    this.router.navigate(['/start'], {
+      queryParams: {
+        emotion: emotion, beat: beat, genre: genre
+      }
+    })
   }
 }

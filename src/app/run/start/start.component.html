@@ -24,6 +24,12 @@
   <p>{{error}}</p>
 </div>
 
+<div class="mx-4 mt-6 text-center">
+  <h2 class="m-6">Playlist ({{params.emotion}}-{{params.beat}}-{{params.genre}})</h2>
+  <a class="p-4 bg-orange text-black rounded-full" [href]="playListUrl">Open in Spotify</a>
+</div>
+
+
 <div class="absolute bottom-20 w-full">
   <div class="grid grid-cols-2 gap-3 mx-4">
     <button class="bg-orange p-2 rounded-full" (click)="startTracking()">Start</button>
