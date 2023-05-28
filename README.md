@@ -1,4 +1,4 @@
-https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+![https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white]({https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white})
 https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black
 https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 
