@@ -1,27 +1,28 @@
 # Runabeat
+Runabeat is a mobile app to keep athletes more motivated. It aims to extend the runners high, by using music to boost performance. This README file provides essential information about the project, including installation instructions, usage guidelines, and other relevant details.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Table of Contents
+- Getting Started
+- Technical
+- Features
+- Installation
+- Contributing
 
-## Development server
+## Getting Started
+This project is a proof of concept application developed to support a thesis. It provides a basic implementation for creating user accounts, saving users' running tracks, and connecting with friends. The primary aim of the project is to explore the feasibility of building a social running app with these features.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technical
+The main code is written in Angular, and can be converted to an IOS or Android native app with capacitor. The navigation is made more visual with font awesome and styled with TailwindCSS.
+User login and saving data is done through Googles Firebase. This is a quick and free way to get started, without bringing extra backend-hosting costs.
 
-## Code scaffolding
+## Features
+- User account creation: Users can register and create their accounts with a google login.
+- Playing music depending on mood, after questionaire.
+- Running track recording: The app allows users to record and save their running tracks.
+- Friend connections: Users can connect with their friends and view their running activities.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
+As it is only a proof of concept the app is not out to download freely. However you are able to clone the repository and work on it this way.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contributing
+If developers want to continue this project feel free to contact me through my profile information
