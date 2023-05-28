@@ -1,3 +1,8 @@
+https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black
+https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+
+
 # Runabeat
 Runabeat is a mobile app to keep athletes more motivated. It aims to extend the runners high, by using music to boost performance. This README file provides essential information about the project, including installation instructions, usage guidelines, and other relevant details.
 
